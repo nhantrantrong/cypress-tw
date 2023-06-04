@@ -1,0 +1,33 @@
+{
+  "name": "cypress-tw",
+  "version": "1.0.0",
+  "description": "This is repository to work on ThoughtWork QA Assignment",
+  "main": "index.js",
+  "scripts": {
+    "reinstall": "rm -rf node_module && rm -rf package-lock.json && npm install",
+    "allure:clean": "rm -rf report/allure-report && rm -rf report/allure-results",
+    "allure:generate": "allure generate report/allure-results --clean -o report/allure-report",
+    "allure:open": "allure open report/allure-report",
+    "allure:report": "npm run allure:generate && npm run allure:open",
+    "cy:open": "cypress open",
+    "cy:test": "npm run allure:clean && cypress run",
+    "cy:test-ui": "npm run cy:test -- --spec cypress/e2e/features/**/*.feature"
+  },
+  "author": "nhantrantrong",
+  "license": "ISC",
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^17.2.1",
+    "@cypress/browserify-preprocessor": "latest",
+    "@shelex/cypress-allure-plugin": "^2.39.1",
+    "cypress": "^12.13.0"
+  },
+  "devDependencies": {
+    "dateformat": "^5.0.3",
+    "jsonschema": "^1.4.1",
+    "webpack": "latest",
+    "@cypress/webpack-preprocessor": "latest"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/e2e/step-definitions/**/*.{js,ts}"
+  }
+}
